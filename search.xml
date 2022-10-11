@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Mac 安装、卸载指定版本Node ,指定node镜像</title>
+      <link href="/post/4a17b156.html"/>
+      <url>/post/4a17b156.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h2><blockquote><p>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</p></blockquote><p>在终端上运行，过程可能会有点慢</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)”</span><br></pre></td></tr></table></figure><p>安装完成后运行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew -v </span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h2><blockquote><p>nvm是node版本管理工具，为了解决node各种版本存在不兼容现象，nvm是让你在同一台机器上安装和切换不同版本的node的工具。</p></blockquote><p><strong>安装nvm</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nvm</span><br></pre></td></tr></table></figure><p>安装完成后，修改环境变量 ，进入当前用户的Home目录</p><p>编辑.bash_profile文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>按 i 进入编辑模式<br>在文件里添加以下内容（安装nvm成功后终端的最后3行代码）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NVM_DIR=~/.nvm</span><br><span class="line">source $(brew --prefix nvm)/nvm.sh</span><br></pre></td></tr></table></figure><p>然后按 esc 退出编辑模式<br>按 :wq 保存并退出</p><p>输入以下命令，更新配置过的环境变量,让配置生效</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure><p>查看nvm版本</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm --version</span><br></pre></td></tr></table></figure><h3 id="nvm-常用语法"><a href="#nvm-常用语法" class="headerlink" title="nvm 常用语法"></a>nvm 常用语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">安装node指定版本</span><br><span class="line">$ nvm install 版本号</span><br><span class="line"></span><br><span class="line">查看本地node的所有版本</span><br><span class="line">$ nvm list</span><br><span class="line"></span><br><span class="line">切换到指定的node版本</span><br><span class="line">$ nvm use 14  # 默认会选择当前版本号最高版本 如： 14.19.1</span><br><span class="line"></span><br><span class="line">卸载指定的node版本</span><br><span class="line">$ nvm uninstall 版本号</span><br><span class="line"></span><br><span class="line">安装最新的node稳定版本</span><br><span class="line">$ nvm install --lts</span><br><span class="line"></span><br><span class="line">查看node的所有的版本</span><br><span class="line">$ nvm ls-remote</span><br><span class="line"></span><br><span class="line">使用node指定版本执行指定文件</span><br><span class="line">$ nvm exec 版本号 node 要执行的文件路径</span><br><span class="line"></span><br><span class="line">例如：nvm exec 4.8.3 node app.js</span><br><span class="line">表示使用4.8.3 版本的node，执行app.js文件</span><br><span class="line"></span><br><span class="line">设置默认版本的Node，每次启动终端都使用该版本的node</span><br><span class="line">$nvm alias default 版本号 </span><br><span class="line"></span><br></pre></td></tr></table></figure><p>当你查询或者安装时候，会发现非常慢，那么我们把镜像切换到淘宝镜像</p><pre><code>vim ~/.bash_profile// 加入以下两条配置文件export NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/nodeexport NVM_IOJS_ORG_MIRROR=http://npm.taobao.org/mirrors/iojs// 重启配置文件source ~/.bash_profile```https://hexo.io/docs/one-command-deployment.html)</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/post/4a17b156.html"/>
+      <url>/post/4a17b156.html</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> jQuery </tag>
+            
+            <tag> 表格 </tag>
+            
+            <tag> 表单验证 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
